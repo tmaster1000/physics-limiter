@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Engine sound for the stand-ins (a deactivated vehicle is silent): its own engine and exhaust sound events are played
 -- by separate sound sources at the stand-in. BeamMP doesn't send the rpm, so it is estimated from the speed, the gear
 -- and the gearbox, with the throttle as the load.

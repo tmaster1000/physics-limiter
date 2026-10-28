@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Finds a vehicle's meshes in the game's .dae files and cuts each out as a small COLLADA text of its own, for
 -- physicsLimiterMerge. The meshes of a model are looked for in its own folder, then in the folder of the shared meshes.
 

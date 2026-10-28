@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Builds the stand-in templates of all vehicle models ahead of time: from the data of each model's default configuration,
 -- without spawning anything, so it works in single player and in a BeamMP session alike. Models that have a template are
 -- skipped, so an interrupted run can be repeated.

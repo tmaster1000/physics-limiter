@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- BeamMP support: tracks the server positions of deactivated remote vehicles (they run no position sync of their own)
 -- by wrapping BeamMP's positionGE.handle. The pose is predicted as BeamMP's positionVE does for a simulated remote
 -- vehicle, but without smoothing the velocities and accelerations (a stand-in has no physics to keep calm, and

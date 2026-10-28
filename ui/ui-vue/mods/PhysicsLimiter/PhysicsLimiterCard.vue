@@ -1,3 +1,4 @@
+<!-- Physics Limiter, Copyright (C) 2026 tmaster1000. Licensed under the GNU Affero General Public License version 3, see the LICENSE file. -->
 <template>
   <div class="np-card">
     <div class="np-header">
@@ -139,7 +140,8 @@
         <p class="np-warning">
           Generating takes a few minutes and the game may freeze or stutter while it runs. It needs about 3&nbsp;GB of
           free disk space. Run it again after a game update or when you add vehicles; "Generate missing" only does the
-          vehicles that have no stand-in yet.
+          vehicles that have no stand-in yet. Until a vehicle has one, it is hidden instead of shown as a stand-in when it
+          is out of range.
         </p>
 
         <div class="np-job">
@@ -175,6 +177,14 @@
 
       <div class="np-footer">
         <button class="np-button" @click="run('reset')">Reset to defaults</button>
+        <button
+          class="np-button np-danger"
+          :disabled="state.templates.running || state.templates.modelsDone === 0"
+          @click="deleteFiles"
+          @blur="confirmDelete = false"
+        >
+          {{ confirmDelete ? "Click again to delete" : "Delete generated files" }}
+        </button>
         <a class="np-link" href="#" @click.prevent="openLink">github.com/tmaster1000/physics-limiter</a>
       </div>
   </div>
@@ -230,6 +240,18 @@ function typing(on) {
 
 function openLink() {
   callLua('openWebBrowser("https://github.com/tmaster1000/physics-limiter")')
+}
+
+const confirmDelete = ref(false)
+
+function deleteFiles() {
+  if (!confirmDelete.value) {
+    confirmDelete.value = true
+    setTimeout(() => (confirmDelete.value = false), 4000)
+    return
+  }
+  confirmDelete.value = false
+  run("deleteGenerated")
 }
 
 function run(name, arg) {
@@ -371,6 +393,9 @@ h3 {
 }
 .np-button:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.22);
+}
+.np-danger {
+  margin-left: 0.6em;
 }
 .np-button:disabled {
   opacity: 0.4;

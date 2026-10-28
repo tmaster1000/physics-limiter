@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Tire screech for the stand-ins (a deactivated vehicle makes no sound): the game's own skid sound, played by a small
 -- pool of sound emitters on the nearest sliding stand-ins. BeamMP doesn't send wheel slip, so it is worked out from
 -- the sideways speed (a drift) and from wheels shown as spinning or locked (burnout, parking brake).

@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Exhaust and tire smoke for the stand-ins (a deactivated vehicle emits nothing). The game's particles are single
 -- particles spawned by a vehicle's physics, so a small pool of emitter nodes is moved to the nearest smoking stand-ins
 -- and switched on for a frame every few frames.

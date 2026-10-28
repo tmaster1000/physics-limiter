@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Settings of Physics Limiter: a pause menu tab shows a Vue card (ui/ui-vue/mods/PhysicsLimiter). Keeps the settings
 -- (saved in the user folder), applies them to the other modules, runs the generation jobs and sends the card its state.
 
@@ -154,6 +155,13 @@ local function cancel()
   if physicsLimiterPrebuild then physicsLimiterPrebuild.stop() end
 end
 
+local function deleteGenerated()
+  if physicsLimiterPrebuild and physicsLimiterPrebuild.getProgress().running then return end
+  physicsLimiterStandIns.deleteGenerated()
+  coverage = nil
+  push()
+end
+
 local function open()
   coverage = nil
   windowOpen = true
@@ -186,7 +194,7 @@ local function tellMissing()
   local missing = getCoverage().total - getCoverage().done
   if missing > 0 and settings.enabled then
     guihooks.trigger('toastrMsg', {type = 'warning', title = 'Physics Limiter', config = {timeOut = 8000},
-      msg = missing .. ' vehicles have no stand-ins yet. Generate them in the Physics Limiter tab of the pause menu.'})
+      msg = missing .. ' vehicles have no stand-ins yet and will be hidden when out of range. Generate them in the Physics Limiter tab of the pause menu.'})
   end
 end
 
@@ -237,6 +245,7 @@ M.set = set
 M.reset = reset
 M.start = start
 M.cancel = cancel
+M.deleteGenerated = deleteGenerated
 M.open = open
 M.close = close
 M.onUpdate = onUpdate

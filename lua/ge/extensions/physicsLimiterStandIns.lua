@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Stand-ins for vehicles deactivated by physicsLimiter: a static copy of the vehicle's visible parts in their undamaged
 -- shape, the body merged into one object and each wheel's tire and rim into one, so the wheels roll and steer. Built once
 -- per model (when its first vehicle spawns, or ahead of time by physicsLimiterPrebuild) and saved; a livery is a copy of
@@ -1187,6 +1188,13 @@ local function clearTemplates()
   table.clear(materialNameCache)
 end
 
+-- deletes everything the mod has generated (the templates, their meshes, the livery copies and the box)
+local function deleteGenerated()
+  clearTemplates()
+  for _, path in ipairs(FS:findFiles(M.boxFolder, '*.*', -1, true, false) or {}) do FS:removeFile(path) end
+  boxPath, boxMaterialLoaded = nil, nil
+end
+
 local function hasTemplate(model)
   local key = templateKey(model)
   templates[key] = templates[key] or loadTemplate(key)
@@ -1220,6 +1228,7 @@ end
 M.request = request
 M.hasTemplate = hasTemplate
 M.clearTemplates = clearTemplates
+M.deleteGenerated = deleteGenerated
 M.buildModelTemplate = buildModelTemplate
 M.has = has
 M.isReady = isReady

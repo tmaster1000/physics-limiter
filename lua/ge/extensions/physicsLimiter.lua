@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Keeps the vehicles nearest the player simulated and deactivates the rest (shown as stand-ins).
 -- Console (GE): physicsLimiter.setEnabled(false), physicsLimiter.carsAhead = 3, physicsLimiter.carsBehind = 2
 
@@ -137,13 +138,14 @@ local function updateSyncing()
   end
 end
 
-local function freeze(veh, id)
+-- hidden: no stand-in exists for the model, so the vehicle just disappears
+local function freeze(veh, id, hidden)
   physicsLimiterStandIns.place(veh, id)
   local pos = vec3(veh:getPosition())
   local ground = groundBelow(pos)
   clearances[id] = ground and clamp(pos.z - ground, 0, 1.5) or nil
   veh:setActive(0)
-  physicsLimiterSounds.start(id)
+  if not hidden then physicsLimiterSounds.start(id) end
   physicsLimiterMP.startTracking(id)
   deactivated[id] = true
   extensions.hook('onPhysicsLimiterFrozen', id, veh)
@@ -221,7 +223,12 @@ local function update()
   -- deactivated, so there is no frame without either
   for _, veh in ipairs(toFreeze) do
     local id = veh:getId()
-    if not physicsLimiterStandIns.isReady(id) then
+    if not physicsLimiterStandIns.hasTemplate(tostring(veh.jbeam)) then
+      if budget > 0 then
+        freeze(veh, id, true)
+        budget = budget - 1
+      end
+    elseif not physicsLimiterStandIns.isReady(id) then
       physicsLimiterStandIns.request(veh, id)
       physicsLimiterSounds.request(veh, id)
     elseif not physicsLimiterStandIns.isShown(id) then

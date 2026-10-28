@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Merges stand-in parts (the texts of their meshes) into one mesh file, so a vehicle's body is one object instead of one per part. By default every
 -- part's geometry is kept under its own node; with options.byMaterial there is one geometry per material, the
 -- placements baked into the vertices (far fewer draws), and the smallest parts are left out.

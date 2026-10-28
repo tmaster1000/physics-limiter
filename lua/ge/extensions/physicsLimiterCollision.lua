@@ -1,4 +1,5 @@
--- Physics Limiter by tmaster1000
+-- Physics Limiter, Copyright (C) 2026 tmaster1000
+-- Licensed under the GNU Affero General Public License version 3, see the LICENSE file.
 -- Hits on deactivated vehicles: when the bounding box of a simulated vehicle reaches the body of a deactivated vehicle
 -- (its stand-in), that vehicle has been run into and is simulated again (physicsLimiter.wakeVehicle); it is deactivated
 -- again once the hit is over. The body is the box around the vehicle's nodes without the wheels, placed on the stand-in.
