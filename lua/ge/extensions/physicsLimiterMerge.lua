@@ -162,8 +162,7 @@ end
 -- The triangles of all parts that share a material are joined into one geometry (one draw) with the placements
 -- applied to positions and normals; parts whose bounding box is smaller than dropSmallerThan meters are left out.
 
-M.dropSmallerThan = 0.2 -- meters, the diagonal of a part's bounding box
-M.triangleBudget = 80000 -- triangles of the body; when there are more, the smallest parts are left out
+M.dropSmallerThan = 0.12 -- meters, the diagonal of a part's bounding box
 
 local function parseNumbers(text)
   local t, n = {}, 0

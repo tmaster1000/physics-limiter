@@ -283,25 +283,11 @@ local function classify(candidates, wheels)
   return others, onWheels
 end
 
--- the biggest parts that fit in the triangle budget
-local function limitTriangles(parts, budget)
-  table.sort(parts, function(a, b) return (a.hi - a.lo):length() > (b.hi - b.lo):length() end)
-  local kept, total = {}, 0
-  for _, part in ipairs(parts) do
-    if total + part.triangles <= budget then
-      kept[#kept + 1] = part
-      total = total + part.triangles
-    end
-  end
-  return kept
-end
-
 local function buildTemplate(model, key, vdata, skinnedNames)
   local info = {parts = {}, wheels = findWheels(vdata)}
 
   local candidates = gatherCandidates(model, vdata)
   local body, onWheels = classify(candidates, info.wheels)
-  body = limitTriangles(body, physicsLimiterMerge.triangleBudget)
   -- per wheel the tire and the rim (the biggest part on its axle, and the biggest of the rest; hubcaps sit inside),
   -- merged into one object that turns about the tire's center
   for wheel, list in pairs(onWheels) do
