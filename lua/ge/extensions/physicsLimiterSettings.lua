@@ -8,7 +8,7 @@ M.path = '/settings/physicsLimiter.json'
 M.pushInterval = 0.4
 M.neededBytes = 4 * 1024 ^ 3 -- the stand-ins of the game and the mods take about 3 GB
 
-local defaults = {enabled = true, carsAhead = 4, carsBehind = 2, physicsDistance = 500, sounds = true, effects = true, targetFps = 60, visibleDistance = 0}
+local defaults = {enabled = false, carsAhead = 4, carsBehind = 2, physicsDistance = 500, sounds = true, effects = true, targetFps = 60, visibleDistance = 0}
 local limits = {carsAhead = {0, 30}, carsBehind = {0, 30}, physicsDistance = {10, 1000}, targetFps = {0, 360}, visibleDistance = {0, 20000}}
 local settings = {}
 local applied = false

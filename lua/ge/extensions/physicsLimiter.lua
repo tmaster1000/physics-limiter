@@ -20,7 +20,7 @@ M.maxHoldTime = 20 -- seconds a vehicle woken by a hit stays simulated at most
 M.resetDistance = 2 -- meters
 M.resetAngle = 10 -- degrees
 
-local enabled = true
+local enabled = false
 local time = 0
 local deactivated = {}
 local syncing = {} -- woken BeamMP remote vehicles still hidden behind their stand-in

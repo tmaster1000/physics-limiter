@@ -187,7 +187,7 @@ import { useBridge } from "@/bridge"
 const { events, api } = useBridge()
 
 const state = reactive({
-  enabled: true,
+  enabled: false,
   carsAhead: 4,
   carsBehind: 2,
   physicsDistance: 500,
